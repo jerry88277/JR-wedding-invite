@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>婚禮邀請 - We are getting married</title>
+    
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 引入 Font Awesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind 設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skin: {
+                            base: 'var(--color-bg)',      
+                            text: 'var(--color-text)',    
+                            primary: 'var(--color-primary)', 
+                            secondary: 'var(--color-secondary)', 
+                            contrast: 'var(--color-contrast)', 
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                        serif: ['"Noto Serif TC"', 'serif'],
+                    },
+                    fontSize: {
+                        'base-lg': ['18px', '1.6'], 
+                        'h1-lg': ['32px', '1.4'],
+                        'h2-lg': ['24px', '1.5'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* * [風格設定] 
+         * 這裡鎖定為「方案 B：清新森系 (Rustic Botanical)」
+         */
+        :root {
+            --color-bg: #F3EFE7;       /* 燕麥色底：保護眼睛 */
+            --color-text: #294025;     /* 森林深綠：高對比文字 */
+            --color-primary: #294025;  /* 主按鈕同深綠色：確保長輩看得到 */
+            --color-secondary: #D8C3A5;/* 暖沙色：裝飾線條 */
+            --color-contrast: #FFFFFF; /* 按鈕上的白字 */
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        .pb-safe-area {
+            padding-bottom: 80px;
+        }
+
+        /* Lightbox 放大圖片效果 */
+        #lightbox {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="font-sans text-base-lg pb-safe-area relative">
+
+    <!-- ========================================== -->
+    <!-- Lightbox 圖片放大檢視器 (隱藏元件) -->
+    <!-- ========================================== -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out">
+        <div class="relative max-w-4xl w-full max-h-screen">
+            <img id="lightbox-img" src="" alt="放大預覽" class="w-full h-full object-contain rounded-lg shadow-2xl">
+            <p class="text-white text-center mt-4 text-lg font-bold"><i class="fa-solid fa-xmark"></i> 點擊任意處關閉</p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. Hero Section 主視覺 -->
+    <!-- ========================================== -->
+    <section id="home" class="relative h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
+        <!-- [修改說明] 背景圖更換：請修改下方 img src 連結 -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Wedding Background" 
+                 class="w-full h-full object-cover opacity-80"> <!-- opacity-80 讓圖片稍微淡一點，配合森系風格 -->
+            <div class="absolute inset-0 bg-[#F3EFE7]/30"></div> <!-- 疊加一點燕麥色濾鏡 -->
+        </div>
+
+        <div class="relative z-10 px-6 animate-fade-in-up">
+            <p class="font-serif text-skin-primary font-bold tracking-widest uppercase mb-4 text-xl">We Are Getting Married</p>
+            <h1 class="font-serif text-h1-lg text-skin-text font-bold mb-2">
+                志明 <span class="text-skin-secondary">&</span> 春嬌
+            </h1>
+            <div class="w-16 h-1 bg-skin-secondary mx-auto my-6 rounded-full"></div>
+            <p class="text-skin-text font-bold text-2xl mb-8">2026. 10. 10 (六)</p>
+            <p class="text-skin-text font-medium bg-skin-base/80 inline-block px-4 py-1 rounded-full backdrop-blur-sm">
+                誠摯邀請您參與我們的喜悅
+            </p>
+            
+            <div class="absolute bottom-10 left-0 right-0 animate-bounce">
+                <i class="fa-solid fa-chevron-down text-skin-primary text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. 婚宴資訊 (Event Details) -->
+    <!-- ========================================== -->
+    <section id="info" class="py-16 px-5 max-w-2xl mx-auto text-center">
+        <h2 class="text-h2-lg font-bold text-skin-text mb-8 border-b-2 border-skin-secondary inline-block pb-2 px-4">
+            婚宴資訊
+        </h2>
+        
+        <div class="bg-white/60 rounded-2xl p-8 shadow-sm border border-skin-secondary/30 backdrop-blur-sm">
+            <div class="mb-8">
+                <div class="inline-block p-3 rounded-full bg-skin-base mb-3 border border-skin-secondary">
+                    <i class="fa-regular fa-clock text-2xl text-skin-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-skin-text mb-2">時間</h3>
+                <p class="text-skin-text">2026 年 10 月 10 日 (星期六)</p>
+                <p class="text-skin-primary font-bold mt-2 text-xl">11:30 入席 | 12:00 準時開席</p>
+            </div>
+
+            <div>
+                <div class="inline-block p-3 rounded-full bg-skin-base mb-3 border border-skin-secondary">
+                    <i class="fa-solid fa-utensils text-2xl text-skin-primary"></i>
+                </div>
+                <h3 class="text-xl font-bold text-skin-text mb-2">地點</h3>
+                <p class="text-skin-text font-bold text-xl mb-1">新象園餐廳</p>
+                <p class="text-skin-text">嘉義縣中埔鄉和睦村司公部3-19號</p>
+                <p class="text-gray-500 text-base mt-2">(附設大型停車場)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. 交通指南 (Transportation) - 新象園 -->
+    <!-- ========================================== -->
+    <section id="transport" class="py-16 px-5 bg-skin-secondary/10">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-h2-lg font-bold text-skin-text mb-8 inline-block">
+                交通指南
+            </h2>
+
+            <!-- Google Maps 嵌入 -->
+            <div class="w-full h-72 bg-gray-200 rounded-xl overflow-hidden mb-6 shadow-md border-4 border-white">
+                <iframe 
+                    src="https://maps.google.com/maps?q=新象園餐廳&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- 導航按鈕 -->
+            <a href="https://www.google.com/maps/search/?api=1&query=嘉義縣中埔鄉新象園餐廳" target="_blank" 
+               class="block w-full bg-skin-primary text-skin-contrast text-xl font-bold py-4 px-6 rounded-xl shadow-lg hover:opacity-90 transition-opacity mb-8 flex items-center justify-center gap-3">
+                <i class="fa-solid fa-location-arrow"></i>
+                導航到新象園 (Google Map)
+            </a>
+
+            <!-- 交通文字說明 -->
+            <div class="text-left space-y-6">
+                <div class="flex gap-4">
+                    <div class="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-skin-primary text-xl shadow-sm">
+                        <i class="fa-solid fa-square-parking"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">停車資訊</h4>
+                        <p class="text-base text-skin-text">餐廳備有專屬大型免費停車場，停車非常方便。</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-skin-primary text-xl shadow-sm">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">開車路線</h4>
+                        <p class="text-base text-skin-text">鄰近嘉義市區與中埔交流道，沿台18線（阿里山公路）行駛即可抵達。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. 婚紗相簿 (Gallery) - 點擊放大版 -->
+    <!-- ========================================== -->
+    <section id="gallery" class="py-16 px-4 max-w-3xl mx-auto text-center">
+        <h2 class="text-h2-lg font-bold text-skin-text mb-4 border-b-2 border-skin-secondary inline-block pb-2 px-4">
+            我們的故事
+        </h2>
+        <p class="mb-8 text-skin-text opacity-80"><i class="fa-solid fa-hand-pointer animate-pulse"></i> 點擊照片可放大檢視</p>
+        
+        <!-- Grid 佈局: 手機版 2 欄 (5列 x 2欄 = 10張) -->
+        <div class="grid grid-cols-2 gap-3 md:gap-4">
+            <!-- [修改說明] 照片更換處：修改下方 img src 連結，共10張 -->
+            
+            <!-- Photo 1 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照1">
+            </div>
+            <!-- Photo 2 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1522673607200-1645062e7dce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照2">
+            </div>
+            <!-- Photo 3 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照3">
+            </div>
+            <!-- Photo 4 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1529636721198-6831b7084d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照4">
+            </div>
+            <!-- Photo 5 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照5">
+            </div>
+            <!-- Photo 6 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照6">
+            </div>
+            <!-- Photo 7 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照7">
+            </div>
+            <!-- Photo 8 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照8">
+            </div>
+            <!-- Photo 9 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1623886566679-b1d8e1368c8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照9">
+            </div>
+            <!-- Photo 10 -->
+            <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1513278974582-dc34a66e0bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照10">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. 常見問題 (Notes) - 吃飽喝足版 -->
+    <!-- ========================================== -->
+    <section class="py-16 px-5 max-w-2xl mx-auto mb-20"> 
+        <h2 class="text-h2-lg font-bold text-skin-text mb-6 text-center">貼心提醒</h2>
+        
+        <ul class="space-y-4">
+            <li class="bg-white/70 p-5 rounded-xl shadow-sm border border-skin-secondary/50 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-skin-base flex items-center justify-center text-2xl">
+                    🍗
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg text-skin-text">吃飽喝足最重要</h4>
+                    <p class="text-skin-text mt-1">無需拘束服裝，我們準備了豐盛的佳餚，請帶著輕鬆愉快的心情來享用。</p>
+                </div>
+            </li>
+            <li class="bg-white/70 p-5 rounded-xl shadow-sm border border-skin-secondary/50 flex gap-4">
+                <div class="shrink-0 w-10 h-10 rounded-full bg-skin-base flex items-center justify-center text-xl text-red-600">
+                    <i class="fa-solid fa-ban"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg text-skin-text">喝酒不開車</h4>
+                    <p class="text-skin-text mt-1 text-red-700 font-bold">為了您的安全，若有飲酒請務必指定代駕或搭乘計程車。</p>
+                    <p class="text-sm text-gray-500 mt-1">（餐廳可協助叫車）</p>
+                </div>
+            </li>
+        </ul>
+        
+        <footer class="mt-12 text-center text-sm opacity-60">
+            <p>&copy; 2026 Jim & Chiao Wedding</p>
+        </footer>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. 底部固定導覽列 (調整為4個項目) -->
+    <!-- ========================================== -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 pb-[env(safe-area-inset-bottom)] shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+        <div class="flex justify-around items-center h-16">
+            <a href="#home" class="flex-1 flex flex-col items-center justify-center text-gray-500 hover:text-skin-primary active:text-skin-primary transition-colors">
+                <i class="fa-solid fa-house text-xl mb-1"></i>
+                <span class="text-xs font-bold">首頁</span>
+            </a>
+            <a href="#info" class="flex-1 flex flex-col items-center justify-center text-gray-500 hover:text-skin-primary active:text-skin-primary transition-colors">
+                <i class="fa-regular fa-calendar-check text-xl mb-1"></i>
+                <span class="text-xs font-bold">資訊</span>
+            </a>
+            <a href="#transport" class="flex-1 flex flex-col items-center justify-center text-gray-500 hover:text-skin-primary active:text-skin-primary transition-colors">
+                <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+                <span class="text-xs font-bold">交通</span>
+            </a>
+            <a href="#gallery" class="flex-1 flex flex-col items-center justify-center text-gray-500 hover:text-skin-primary active:text-skin-primary transition-colors">
+                <i class="fa-regular fa-images text-xl mb-1"></i>
+                <span class="text-xs font-bold">相簿</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- JavaScript 邏輯 -->
+    <!-- ========================================== -->
+    <script>
+        // 1. 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20, 
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 2. 相簿 Lightbox 功能
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // 開啟
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            // 替換連結中的參數以取得更高畫質 (僅適用於 unsplash，您自己的照片不需要這步)
+            const highResSrc = imgSrc.replace('&w=600', '&w=1200'); 
+            
+            lightboxImg.src = highResSrc;
+            lightbox.classList.add('active');
+            
+            // 禁止背景滾動
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 關閉 (點擊黑色背景或圖片皆可)
+        lightbox.addEventListener('click', function() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // 恢復滾動
+        });
+    </script>
+</body>
+</html>
