@@ -8,10 +8,10 @@
     <!-- 1. 預先連線 (加速資源取得) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- 2. [關鍵優化] 預先載入第一張大背景圖 (限制 w=1920) -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
-
+    
     <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     
@@ -50,13 +50,15 @@
     </script>
 
     <style>
-        /* 風格設定：方案 B 清新森系 */
+        /* * [風格設定] 
+         * 這裡鎖定為「方案 B：清新森系 (Rustic Botanical)」
+         */
         :root {
-            --color-bg: #F3EFE7;       
-            --color-text: #294025;     
-            --color-primary: #294025;  
-            --color-secondary: #D8C3A5;
-            --color-contrast: #FFFFFF; 
+            --color-bg: #F3EFE7;       /* 燕麥色底：保護眼睛 */
+            --color-text: #294025;     /* 森林深綠：高對比文字 */
+            --color-primary: #294025;  /* 主按鈕同深綠色：確保長輩看得到 */
+            --color-secondary: #D8C3A5;/* 暖沙色：裝飾線條 */
+            --color-contrast: #FFFFFF; /* 按鈕上的白字 */
         }
 
         body {
@@ -68,7 +70,7 @@
             padding-bottom: 80px;
         }
 
-        /* Lightbox 效果 */
+        /* Lightbox 放大圖片效果 */
         #lightbox {
             opacity: 0;
             pointer-events: none;
@@ -82,7 +84,9 @@
 </head>
 <body class="font-sans text-base-lg pb-safe-area relative">
 
-    <!-- Lightbox -->
+    <!-- ========================================== -->
+    <!-- Lightbox 圖片放大檢視器 (隱藏元件) -->
+    <!-- ========================================== -->
     <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 cursor-zoom-out">
         <div class="relative max-w-4xl w-full max-h-screen">
             <img id="lightbox-img" src="" alt="放大預覽" class="w-full h-full object-contain rounded-lg shadow-2xl">
@@ -91,16 +95,17 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- 1. Hero Section 主視覺 (速度優化重點) -->
+    <!-- 1. Hero Section 主視覺 -->
     <!-- ========================================== -->
     <section id="home" class="relative h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
+        <!-- [修改說明] 背景圖更換：請修改下方 img src 連結 -->
         <div class="absolute inset-0 z-0">
             <!-- [優化] 改為 w=1920，並加入 fetchpriority="high" -->
             <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
                  fetchpriority="high"
                  alt="Wedding Background" 
-                 class="w-full h-full object-cover opacity-80">
-            <div class="absolute inset-0 bg-[#F3EFE7]/30"></div>
+                 class="w-full h-full object-cover opacity-80"> <!-- opacity-80 讓圖片稍微淡一點，配合森系風格 -->
+            <div class="absolute inset-0 bg-[#F3EFE7]/30"></div> <!-- 疊加一點燕麥色濾鏡 -->
         </div>
 
         <div class="relative z-10 px-6 animate-fade-in-up">
@@ -121,7 +126,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 2. 婚宴資訊 -->
+    <!-- 2. 婚宴資訊 (Event Details) -->
     <!-- ========================================== -->
     <section id="info" class="py-16 px-5 max-w-2xl mx-auto text-center">
         <h2 class="text-h2-lg font-bold text-skin-text mb-8 border-b-2 border-skin-secondary inline-block pb-2 px-4">
@@ -151,7 +156,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 3. 交通指南 -->
+    <!-- 3. 交通指南 (Transportation) - 新象園 -->
     <!-- ========================================== -->
     <section id="transport" class="py-16 px-5 bg-skin-secondary/10">
         <div class="max-w-2xl mx-auto text-center">
@@ -159,19 +164,21 @@
                 交通指南
             </h2>
 
-            <!-- Google Maps: 加入 loading="lazy" -->
+            <!-- Google Maps 嵌入 -->
             <div class="w-full h-72 bg-gray-200 rounded-xl overflow-hidden mb-6 shadow-md border-4 border-white">
                 <iframe 
                     src="https://maps.google.com/maps?q=新象園餐廳&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
+            <!-- 導航按鈕 -->
             <a href="https://www.google.com/maps/search/?api=1&query=嘉義縣中埔鄉新象園餐廳" target="_blank" 
                class="block w-full bg-skin-primary text-skin-contrast text-xl font-bold py-4 px-6 rounded-xl shadow-lg hover:opacity-90 transition-opacity mb-8 flex items-center justify-center gap-3">
                 <i class="fa-solid fa-location-arrow"></i>
                 導航到新象園 (Google Map)
             </a>
 
+            <!-- 交通文字說明 -->
             <div class="text-left space-y-6">
                 <div class="flex gap-4">
                     <div class="shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-skin-primary text-xl shadow-sm">
@@ -196,7 +203,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 4. 婚紗相簿 (延遲載入優化) -->
+    <!-- 4. 婚紗相簿 (Gallery) - 點擊放大版 -->
     <!-- ========================================== -->
     <section id="gallery" class="py-16 px-4 max-w-3xl mx-auto text-center">
         <h2 class="text-h2-lg font-bold text-skin-text mb-4 border-b-2 border-skin-secondary inline-block pb-2 px-4">
@@ -204,63 +211,66 @@
         </h2>
         <p class="mb-8 text-skin-text opacity-80"><i class="fa-solid fa-hand-pointer animate-pulse"></i> 點擊照片可放大檢視</p>
         
+        <!-- Grid 佈局: 手機版 2 欄 (5列 x 2欄 = 10張) -->
         <div class="grid grid-cols-2 gap-3 md:gap-4">
-            <!-- [優化] 所有相簿圖片加入 loading="lazy"，且確認寬度限制為 w=600 -->
+            <!-- [修改說明] 照片更換處：修改下方 img src 連結，共10張 -->
+            <!-- [優化] 所有相簿圖片加入 loading="lazy" -->
             
+            <!-- Photo 1 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照1">
             </div>
-
+            <!-- Photo 2 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1522673607200-1645062e7dce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照2">
             </div>
-
+            <!-- Photo 3 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照3">
             </div>
-
+            <!-- Photo 4 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1529636721198-6831b7084d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照4">
             </div>
-
+            <!-- Photo 5 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照5">
             </div>
-
+            <!-- Photo 6 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照6">
             </div>
-
+            <!-- Photo 7 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照7">
             </div>
-
+            <!-- Photo 8 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照8">
             </div>
-
+            <!-- Photo 9 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1623886566679-b1d8e1368c8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照9">
             </div>
-
+            <!-- Photo 10 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1513278974582-dc34a66e0bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                      loading="lazy"
@@ -270,7 +280,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 5. 貼心提醒 -->
+    <!-- 5. 常見問題 (Notes) - 吃飽喝足版 -->
     <!-- ========================================== -->
     <section class="py-16 px-5 max-w-2xl mx-auto mb-20"> 
         <h2 class="text-h2-lg font-bold text-skin-text mb-6 text-center">貼心提醒</h2>
@@ -303,7 +313,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 6. 底部導覽列 -->
+    <!-- 6. 底部固定導覽列 (調整為4個項目) -->
     <!-- ========================================== -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 pb-[env(safe-area-inset-bottom)] shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
         <div class="flex justify-around items-center h-16">
@@ -326,7 +336,9 @@
         </div>
     </nav>
 
+    <!-- ========================================== -->
     <!-- JavaScript 邏輯 -->
+    <!-- ========================================== -->
     <script>
         // 1. 平滑滾動
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -348,20 +360,23 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
+        // 開啟
         function openLightbox(element) {
             const imgSrc = element.querySelector('img').src;
-            // 點開大圖時，取得更高的解析度 (w=1200)
+            // 替換連結中的參數以取得更高畫質 (僅適用於 unsplash，您自己的照片不需要這步)
             const highResSrc = imgSrc.replace('&w=600', '&w=1200'); 
             
             lightboxImg.src = highResSrc;
             lightbox.classList.add('active');
             
+            // 禁止背景滾動
             document.body.style.overflow = 'hidden';
         }
 
+        // 關閉 (點擊黑色背景或圖片皆可)
         lightbox.addEventListener('click', function() {
             lightbox.classList.remove('active');
-            document.body.style.overflow = ''; 
+            document.body.style.overflow = ''; // 恢復滾動
         });
     </script>
 </body>
