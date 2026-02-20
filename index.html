@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>婚禮邀請 - We are getting married</title>
     
-    <!-- 1. 預先連線 (加速資源取得) -->
+    <!-- 引入 Google Fonts (預先連線加速) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- 2. [關鍵優化] 預先載入第一張大背景圖 (限制 w=1920) -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
     
-    <!-- 引入 Google Fonts -->
+    <!-- [關鍵優化] 預先載入第一張大背景圖 -->
+    <link rel="preload" as="image" href="images/S__5160985.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- 引入 Font Awesome 圖標 -->
@@ -98,10 +97,9 @@
     <!-- 1. Hero Section 主視覺 -->
     <!-- ========================================== -->
     <section id="home" class="relative h-screen min-h-[600px] flex items-center justify-center text-center overflow-hidden">
-        <!-- [修改說明] 背景圖更換：請修改下方 img src 連結 -->
         <div class="absolute inset-0 z-0">
-            <!-- [優化] 改為 w=1920，並加入 fetchpriority="high" -->
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+            <!-- [優化] 加入 fetchpriority="high" 優先載入此圖 -->
+            <img src="images/S__5160985.jpg" 
                  fetchpriority="high"
                  alt="Wedding Background" 
                  class="w-full h-full object-cover opacity-80"> <!-- opacity-80 讓圖片稍微淡一點，配合森系風格 -->
@@ -111,10 +109,10 @@
         <div class="relative z-10 px-6 animate-fade-in-up">
             <p class="font-serif text-skin-primary font-bold tracking-widest uppercase mb-4 text-xl">We Are Getting Married</p>
             <h1 class="font-serif text-h1-lg text-skin-text font-bold mb-2">
-                志明 <span class="text-skin-secondary">&</span> 春嬌
+                小戴 <span class="text-skin-secondary">&</span> 碰碰
             </h1>
             <div class="w-16 h-1 bg-skin-secondary mx-auto my-6 rounded-full"></div>
-            <p class="text-skin-text font-bold text-2xl mb-8">2026. 10. 10 (六)</p>
+            <p class="text-skin-text font-bold text-2xl mb-8">2026. 3. 15 (日)</p>
             <p class="text-skin-text font-medium bg-skin-base/80 inline-block px-4 py-1 rounded-full backdrop-blur-sm">
                 誠摯邀請您參與我們的喜悅
             </p>
@@ -139,7 +137,7 @@
                     <i class="fa-regular fa-clock text-2xl text-skin-primary"></i>
                 </div>
                 <h3 class="text-xl font-bold text-skin-text mb-2">時間</h3>
-                <p class="text-skin-text">2026 年 10 月 10 日 (星期六)</p>
+                <p class="text-skin-text">2026 年 3 月 15 日 (星期日)</p>
                 <p class="text-skin-primary font-bold mt-2 text-xl">11:30 入席 | 12:00 準時開席</p>
             </div>
 
@@ -213,66 +211,55 @@
         
         <!-- Grid 佈局: 手機版 2 欄 (5列 x 2欄 = 10張) -->
         <div class="grid grid-cols-2 gap-3 md:gap-4">
-            <!-- [修改說明] 照片更換處：修改下方 img src 連結，共10張 -->
-            <!-- [優化] 所有相簿圖片加入 loading="lazy" -->
+            <!-- [優化] 所有相簿圖片加上 loading="lazy" 延遲載入 -->
             
-            <!-- Photo 1 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1511285560982-1356c11d4606?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/59. D247A6F1-8C99-4472-8E87-6BBD537CE990.jpeg" 
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照1">
             </div>
-            <!-- Photo 2 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1522673607200-1645062e7dce?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/53. A5BC26CC-AFC3-40E2-88E2-D9AF0D5614D6.jpeg"  
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照2">
             </div>
-            <!-- Photo 3 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/21. 羽球場-靠網親親.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照3">
             </div>
-            <!-- Photo 4 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1529636721198-6831b7084d34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/14. 羽球場-娃娃機鬼臉.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照4">
             </div>
-            <!-- Photo 5 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/40. 旗津樹林-前後合照1.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照5">
             </div>
-            <!-- Photo 6 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/41. 旗津樹林-前後合照2.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照6">
             </div>
-            <!-- Photo 7 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/47. 旗津燈塔-階梯合照2.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照7">
             </div>
-            <!-- Photo 8 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/45. 旗津燈塔-陽光合照2.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照8">
             </div>
-            <!-- Photo 9 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1623886566679-b1d8e1368c8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/31. 海灘-對看合照.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照9">
             </div>
-            <!-- Photo 10 -->
             <div class="aspect-[3/4] rounded-lg overflow-hidden shadow-sm cursor-zoom-in group" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1513278974582-dc34a66e0bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                <img src="images/29. 海灘-日期牌子.jpg"
                      loading="lazy"
                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="婚紗照10">
             </div>
@@ -308,7 +295,7 @@
         </ul>
         
         <footer class="mt-12 text-center text-sm opacity-60">
-            <p>&copy; 2026 Jim & Chiao Wedding</p>
+            <p>&copy; 2026 Jerry & Rorow Wedding</p>
         </footer>
     </section>
 
@@ -363,10 +350,9 @@
         // 開啟
         function openLightbox(element) {
             const imgSrc = element.querySelector('img').src;
-            // 替換連結中的參數以取得更高畫質 (僅適用於 unsplash，您自己的照片不需要這步)
-            const highResSrc = imgSrc.replace('&w=600', '&w=1200'); 
             
-            lightboxImg.src = highResSrc;
+            // [優化] 因為使用的是本地照片，直接將圖片來源指定給 lightbox，移除了多餘的字串替換
+            lightboxImg.src = imgSrc;
             lightbox.classList.add('active');
             
             // 禁止背景滾動
